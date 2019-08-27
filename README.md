@@ -1,2 +1,2 @@
 # BillsDivisor
-A simple divisor for my flatmates 
+A simple divisor for me and my flatmates 
