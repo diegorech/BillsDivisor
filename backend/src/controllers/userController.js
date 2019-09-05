@@ -1,7 +1,7 @@
 
 const Users = require('../models/Users')
 const bcrypt = require('bcryptjs')
-const userValidation = require('../validation')
+const { userValidation } = require('../validation')
 
 
 
@@ -35,8 +35,8 @@ module.exports = {
 
 
         //Hash password
-        const salt = await bcrypt.genSalt(10)
-        const hashedPass = await bcrypt.hash(req.body.password, salt)  
+        //const salt = await bcrypt.genSalt(10)
+        const hashedPass = await bcrypt.hash(req.body.password, 10)  
 
 
         //Create new user
