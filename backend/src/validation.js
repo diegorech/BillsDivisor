@@ -9,4 +9,14 @@ const userValidation = data => {
     return Joi.validate(data, schema)
 }
 
+
+const loginValidation = data => {
+    const schema = {
+        email: Joi.string().min(6).email({ minDomainSegments: 2 }),
+        password: Joi.string().min(6).required()
+    }
+    return Joi.validate(data, schema)
+}
+
 module.exports.userValidation = userValidation
+module.exports.loginValidation = loginValidation

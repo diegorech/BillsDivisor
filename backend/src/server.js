@@ -2,14 +2,17 @@ const express = require ('express')
 const mongoose = require('mongoose')
 const routes = require('./routes')
 const cors = require('cors')
+const dotenv = require('dotenv')
 const app = express()
 
+dotenv.config()
 
 
 //Connect to DB
-mongoose.connect('mongodb+srv://diego:diego@cluster0-pihyz.mongodb.net/BillsDivisor?retryWrites=true&w=majority',
-{ useNewUrlParser: true },
-() => console.log('Connected to DB')
+mongoose.connect( 
+    process.env.DB_LINK,
+    { useNewUrlParser: true },
+    () => console.log('Connected to DB')
 )
 
 app.use(cors())

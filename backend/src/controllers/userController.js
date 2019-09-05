@@ -1,14 +1,14 @@
-const express = require('express')
+
 const Users = require('../models/Users')
 const bcrypt = require('bcryptjs')
-const { userValidation } = require('../validation')
+const userValidation = require('../validation')
 
 
-
-const router = express.Router()
 
 module.exports = {
 
+
+    
     async index(req, res) {
         const { user } = req.headers
 
@@ -23,16 +23,12 @@ module.exports = {
     async store(req, res) {
 
         //Validation
-
         const { error } = userValidation(req.body)
         if( error ) return res.status(400).send(error)
 
         //Check if user exists
-        const userExists = await Users.findOne({
-            $and: [
-                { name : req.body.name},//Not working (???)
-                { email: req.body.email },      
-            ] 
+        const userExists = await Users.findOne({ 
+            email: req.body.email 
         })
 
         if ( userExists ) return res.status(400).send('User already exists')
@@ -65,7 +61,7 @@ module.exports = {
    
    async userList(req, res) {
        const userList = await Users.find()
-       console.log(userList)
+       
 
        return res.send(userList)
    }
